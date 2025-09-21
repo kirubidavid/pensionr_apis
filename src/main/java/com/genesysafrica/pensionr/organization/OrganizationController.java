@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/apis/v1/organization")
 class OrganizationController {
@@ -21,7 +23,9 @@ class OrganizationController {
     @PostMapping("/create-organization")
     ResponseEntity<?> createOrganization(){
 
-        return ResponseHandler.generateResponse("SUCCESS", HttpStatus.OK, organizationService.createOrganization());
+        var vResponse = organizationService.createOrganization("ABC Limited","A0000000X",  UUID.randomUUID());
+
+        return ResponseHandler.generateResponse("SUCCESS", HttpStatus.OK, vResponse);
     }
 
 
