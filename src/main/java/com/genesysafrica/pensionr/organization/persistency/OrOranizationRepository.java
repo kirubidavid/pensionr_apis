@@ -8,9 +8,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface OrOranizationRepository extends JpaRepository<OrOranizationEntity, UUID> {
+public interface OrOranizationRepository extends JpaRepository<OrOrganizationEntity, UUID> {
 
     @NativeQuery("select * from or_organizations where or_tax_pin = ?1")
-    Optional<OrOranizationEntity> findByKraPin(String vTaxPin);
+    Optional<OrOrganizationEntity> findByKraPin(String vTaxPin);
 
 }

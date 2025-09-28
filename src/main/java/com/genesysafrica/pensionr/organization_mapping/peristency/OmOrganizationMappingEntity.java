@@ -1,4 +1,4 @@
-package com.genesysafrica.pensionr.organization.persistency;
+package com.genesysafrica.pensionr.organization_mapping.peristency;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -8,21 +8,21 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "or_organizations")
+@Table(name = "om_organization_mappings")
 @Data
-public class OrOranizationEntity {
+public class OmOrganizationMappingEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "or_name")
+    @Column(name = "us_id_fk")
     @NotNull
-    private String OrName;
+    private UUID usIdFk;
 
-    @Column(name = "or_tax_pin")
+    @Column(name = "or_id_fk")
     @NotNull
-    private String OrTaxPin;
+    private UUID orIdFk;
 
     @Column(name = "created_at")
     @NotNull
@@ -39,9 +39,5 @@ public class OrOranizationEntity {
     @Column(name = "updated_by")
     @NotNull
     private UUID updatedBy;
-
-
-
-
 
 }

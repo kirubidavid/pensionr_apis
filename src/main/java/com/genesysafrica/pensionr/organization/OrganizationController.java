@@ -1,9 +1,11 @@
 package com.genesysafrica.pensionr.organization;
 
 import com.genesysafrica.pensionr.components.ResponseHandler;
+import com.genesysafrica.pensionr.organization.dto.CreateOrganizationDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,12 +23,13 @@ class OrganizationController {
 
 
     @PostMapping("/create-organization")
-    ResponseEntity<?> createOrganization(){
+    ResponseEntity<Object> createOrganization(@RequestBody CreateOrganizationDto createOrganizationDto){
 
-        var vResponse = organizationService.createOrganization("ABC Limited","A0000000X",  UUID.randomUUID());
+        var vResponse = organizationService.createOrganization(createOrganizationDto.getTxtOrganizationName(),createOrganizationDto.getTxtTaxPin(),  UUID.randomUUID());
 
         return ResponseHandler.generateResponse("SUCCESS", HttpStatus.OK, vResponse);
     }
+
 
 
 
