@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.UUID;
 
 @Service
@@ -39,12 +40,16 @@ public class OrganizationService {
         orOranizationRepository.save(vOrganization);
 
         // Map user to organization
-        this.applicationEventPublisher.publishEvent(new UserOrganizationMappingEvent(UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID()));
+        this.applicationEventPublisher.publishEvent(new UserOrganizationMappingEvent(vUserId, vOrganization.getId(), vUserId));
 
 
         // Send an OTP Email
 
         return "ORGANIZATION_CREATED";
+    }
+
+    ArrayList<OrOrganizationEntity> getSchemesAssignedToUser(UUID vUserId){
+        return orOranizationRepository.findSchemesByUserId(vUserId);
     }
 
 
