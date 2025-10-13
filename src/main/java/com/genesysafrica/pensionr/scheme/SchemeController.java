@@ -27,7 +27,9 @@ public class SchemeController {
     @GetMapping("/all-schemes")
     public ResponseEntity<?> getAllSchemes(@RequestParam(defaultValue = "0") int page, PagedResourcesAssembler pagedResourcesAssembler){
 
-        var vAllSchemes = schemeService.getSchemesAssigned(UUID.randomUUID(),  PageRequest.of(page, 20));
+        var vUserId = UUID.randomUUID();
+
+        var vAllSchemes = schemeService.getSchemesAssigned(vUserId,  PageRequest.of(page, 20));
 
         return ResponseHandler.generatePagedResponse("SUCCESS", HttpStatus.OK,  pagedResourcesAssembler.toModel(vAllSchemes) );
     }
@@ -35,7 +37,9 @@ public class SchemeController {
     @PostMapping("/create-pension")
     public ResponseEntity<Object> postCreatePensionScheme(@Valid @RequestBody CreatePensionSchemeDto createSchemeDto){
 
-        var vResponse = schemeService.createScheme();
+        var vUserId = UUID.randomUUID();
+
+        var vResponse = schemeService.createScheme(vUserId,createSchemeDto.getTxtSchemeName(), createSchemeDto.getTxtTaxPin(), createSchemeDto.getTxtFundType());
 
         return ResponseHandler.generateResponse("SUCCESS", HttpStatus.OK, vResponse);
     }

@@ -8,4 +8,6 @@ public class CreatePensionSchemeDto {
     private String txtSchemeName;
 
     private String txtTaxPin;
+
+    private String txtFundType;
 }

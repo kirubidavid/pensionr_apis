@@ -24,7 +24,20 @@ public class SchemeService {
         return scSchemeRepository.getSchemesAssignedToUser(vUser, pageable);
     }
 
-    public String createScheme(){
+    public String createScheme(UUID vUser, String vSchemeName, String vFundType){
+
+        var vCreateScheme = new ScSchemeEntity();
+        vCreateScheme.setSchemeName(vSchemeName);
+        vCreateScheme.setStatus("N");
+        vCreateScheme.setFundType(vFundType);
+        vCreateScheme.setCreatedAt(LocalDateTime.now());
+        vCreateScheme.setUpdatedBy(vUser);
+        vCreateScheme.setCreatedBy(vUser);
+        vCreateScheme.setUpdatedAt(LocalDateTime.now());
+        scSchemeRepository.save(vCreateScheme);
+
+        // Send Email
+
         return "SCHEME_CREATED";
     }
 
@@ -41,7 +54,7 @@ public class SchemeService {
         vCreateScheme.setUpdatedAt(LocalDateTime.now());
         scSchemeRepository.save(vCreateScheme);
 
-        // Send and email
+        // Send an email
 
         return "SCHEME_CREATED";
     }
