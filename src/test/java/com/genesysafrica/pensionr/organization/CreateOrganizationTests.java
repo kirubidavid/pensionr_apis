@@ -13,11 +13,19 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @SpringBootTest
 public class CreateOrganizationTests {
 
-    @Autowired
     OrganizationService organizationService;
+    OrOranizationRepository orOranizationRepository;
 
     @Autowired
-    OrOranizationRepository orOranizationRepository;
+    public CreateOrganizationTests(OrganizationService organizationService, OrOranizationRepository orOranizationRepository ){
+        this.orOranizationRepository = orOranizationRepository;
+        this.organizationService = organizationService;
+    }
+
+    ;
+
+    @Autowired
+
 
     @BeforeEach
     void cleanDatabase(){
